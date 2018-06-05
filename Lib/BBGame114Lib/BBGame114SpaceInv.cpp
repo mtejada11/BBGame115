@@ -90,7 +90,7 @@ void Spaceship::CheckHit(Aliens &aliens)
         state = 2;
         aliens.state[i] = 0;
         aliens.pos[i] = 11;
-        sound.StartSound(60, 10); //spaceship hit
+        //sound.StartSound(60, 10); //spaceship hit
       }
     }
   }
@@ -145,29 +145,31 @@ void Laser::Fire(int shipPos)
     fired = true;
     distance = 0;
     pos = shipPos;
+    sound.StartSound(120, 5);
   }
 }
 
 
 void Laser::CheckHit(Aliens &aliens)
 {
-  if(!fired) return;
-
-  for(byte i=0; i<aliens.num; i++)
-    if((aliens.pos[i]==distance) && (aliens.state[i]!=0))
-    {
-      if(bitImage & aliens.aliens[i])
+  if (fired)
+  {
+    for(byte i=0; i<aliens.num; i++)
+      if((aliens.pos[i]==distance) && (aliens.state[i]!=0))
       {
-        aliens.state[i] = ALIEN_HIT;
-        pos = 11;
-        fired = false;
-        sound.StartSound(200, 15, true); //alien explosion
-        numHits++;
+        if(bitImage & aliens.aliens[i])
+        {
+          aliens.state[i] = ALIEN_HIT;
+          pos = 11;
+          fired = false;
+          sound.StartSound(200, 15, true); //alien explosion
+          numHits++;
+        }
       }
-    }
+  }
 
-    //Also take care of sound update here, because this is always called
-    sound.Update(counter);
+  //Also take care of sound update here, because this is always called
+  sound.Update(counter);
 }
 
 
