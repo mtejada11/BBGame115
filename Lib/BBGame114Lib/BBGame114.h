@@ -31,6 +31,7 @@ public:
     void vShift(byte dir = 0, bool wrap = false);
     byte numCols;
     byte numRows;
+    void SetSlowdown(byte factor);
 
 private:
     void SetupTimedRefresh();

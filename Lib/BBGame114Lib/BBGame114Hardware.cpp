@@ -17,7 +17,10 @@ byte displayRows[4] = { 8, 9, 11, 12 };
 byte displayCols[11] = { 2, 3, 4, 5, 6, 7, A5, A4, A3, A2, A1 };
 
 byte displayBuffer[11];
-byte scanRow = 0;
+int  displayCounter = 0;
+byte displaySlowdownFactor = 1;
+byte displayScanRow = 0;
+
 
 
 void Display::Setup(byte _numCols, byte _numRows)
@@ -133,6 +136,11 @@ void Display::vShift(byte dir, bool wrap)
   } 
 }
 
+void Display::SetSlowdown(byte factor)
+{
+  if (factor < 1) factor = 1;
+  displaySlowdownFactor = factor;
+}
 
 
 void Display::SetupTimedRefresh()
@@ -162,8 +170,11 @@ void Display::SetupTimedRefresh()
 
 SIGNAL(TIMER2_COMPA_vect) 
 {
-  byte j = scanRow;
+  byte j = displayScanRow;
   byte on_value;
+
+  displayCounter++;
+  if ((displayCounter % displaySlowdownFactor) != 0) return;
 
   digitalWrite(displayRows[0], 0);
   digitalWrite(displayRows[1], 0);
@@ -179,8 +190,8 @@ SIGNAL(TIMER2_COMPA_vect)
     digitalWrite(displayCols[i], ((*(p++)) & mask) ? 1 : 0);
 
   noInterrupts();
-  scanRow++;
-  scanRow %= 4;
+  displayScanRow++;
+  displayScanRow %= 4;
   interrupts();
 }
 
