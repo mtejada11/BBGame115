@@ -225,6 +225,8 @@ GameLevel defaultGameLevels[] =
 int counter2 = 0;
 
 
+// ----- Aliens class methods -----
+
 Aliens::Aliens()
 {
   num = 0;

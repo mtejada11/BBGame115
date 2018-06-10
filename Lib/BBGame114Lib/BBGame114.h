@@ -20,18 +20,18 @@
 class Display
 {
 public:
-    void Setup(byte _numCols, byte _numRows);
-    void Clear();
-    static byte MakeBit(byte y);
-    byte SetPixel(byte x, byte y, byte c = 1);
-    void SetByte(byte x, byte bits);
-    void vLine(byte x, byte y1 = 255, byte y2 = 255);
-    void hLine(byte y, byte x1 = 255, byte x2 = 255);
-    void hShift(byte dir = 0, bool wrap = false);
-    void vShift(byte dir = 0, bool wrap = false);
-    byte numCols;
-    byte numRows;
-    void SetSlowdown(byte factor);
+void Setup(byte _numCols, byte _numRows);
+void Clear();
+static byte MakeBit(byte y);
+byte SetPixel(byte x, byte y, byte c = 1);
+void SetByte(byte x, byte bits);
+void vLine(byte x, byte y1 = 255, byte y2 = 255);
+void hLine(byte y, byte x1 = 255, byte x2 = 255);
+void hShift(byte dir = 0, bool wrap = false);
+void vShift(byte dir = 0, bool wrap = false);
+byte numCols;
+byte numRows;
+void SetSlowdown(byte factor);
 
 private:
     void SetupTimedRefresh();
@@ -66,8 +66,6 @@ private:
 
 // Purpose: To output sound tones through the piezoelectric
 // speaker on the the BBGame114 board.
-// NOTE: This class still needs to be reworked to remove references
-// to the Space Invaders game.
 
 
 #define SNDPIN 10

@@ -238,8 +238,6 @@ bool Buttons::BtnPressed(byte i)
 
 // Purpose: To output sound tones through the piezoelectric
 // speaker on the the BBGame114 board.
-// NOTE: This class still needs to be reworked to remove references
-// to the Space Invaders game.
 
 
 void Sound::Setup()
