@@ -1,5 +1,5 @@
  
-//========== SEED Electronics/Coding Workshop Exercise 10d ==========
+//========== SEED Electronics/Coding Workshop Exercise 10e ==========
 
 //Purpose: Full game with score display and custom game levels
 //Date: June 9, 2018  
@@ -15,15 +15,24 @@ Spaceship ship;
 Laser laser;
 Aliens aliens;
 
+
+//---------- Custom game levels ----------
+
 GameLevel gameLevels[] = 
 {
-  { 150, 400, 15, 30, ALIENWAVE_RANDOM, 0, 3, 2 },
-  { 200, 100, 15, 15, ALIENWAVE_MARCH,  1, 2, 1 },
-  { 200, 200, 15, 30, ALIENWAVE_RANDOM, 0, 3, 2 },
-  { 200, 100,  5,  5, ALIENWAVE_MARCH,  1, 2, 1 },
-  { 200, 300, 10, 20, ALIENWAVE_RANDOM, 0, 3, 2 },
-  {  50, 0,   0 ,  0, ALIENWAVE_END,    0, 0, 0 }
-};
+  //_1__ _2__ _3__ _4__ _5_______________ _6__ _7__ _8__
+  { 150, 400,  15,  30, ALIENWAVE_RANDOM,  0,   3,   2 },
+  { 200, 100,  15,  15, ALIENWAVE_MARCH,   1,   2,   1 },
+  { 200, 200,  15,  30, ALIENWAVE_RANDOM,  0,   3,   2 },
+  { 200, 100,   5,   5, ALIENWAVE_MARCH,   1,   2,   1 },
+  { 200, 300,  10,  20, ALIENWAVE_RANDOM,  0,   3,   2 },
+  {  50,   0,   0,   0, ALIENWAVE_END,     0,   0,   0 }
+  //1: Start, 2: Duration, 3: Update interval, 
+  //4: Add alien interval, 5: Alien wave type, 
+  //6: Wave position minimum row, 7: Wave position maximum row, 
+  //8: Score increment
+  //Note: ALIENWAVE_END is an end marker for the list of levels.
+ };
 
 
 //---------- Setup routine to run once ----------
@@ -127,4 +136,3 @@ void UpdateLaser()
       laserDistance++;
   }
 }
-
