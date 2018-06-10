@@ -11,23 +11,35 @@
 #include "BBGame114.h"
 
 
-struct Level
+typedef struct
 {
+    int start_delay;
+    int duration;
+    int update_interval;
+    int add_interval;
+    byte type;
+    byte min;
+    byte max;
+    byte points;
     int start;
     int end;
-    int update_interval;
-    byte points;
-    byte (*NewAlienFunc)(int counter);
-};
+} 
+GameLevel;
 
-extern struct Level levels[];
+typedef enum 
+{ 
+    ALIENWAVE_RANDOM = 0,
+    ALIENWAVE_MARCH = 1,
+    ALIENWAVE_END = 2      
+} 
+AlienWaveType;
+
 
 byte NewAlienLevel1(int counter);
 byte NewAlienLevel2(int counter);
 byte NewAlienLevel3(int counter);
 byte NewAlienLevelEmpty(int counter);
 
-#define NUM_LEVELS 5
 
 class Aliens
 {
@@ -38,6 +50,7 @@ public:
     void Update(int counter);
     int NextAlienInterval();
     bool Finished();
+    void SetGameLevels(GameLevel *newLevels);
 
     byte aliens[12];
     byte pos[12];
@@ -45,7 +58,12 @@ public:
     byte num;
     byte next;
 
+    byte numLevels;
     byte level;
+
+private:
+    GameLevel *levels;
+    void AdjustGameLevelGaps(GameLevel *newLevels);
 };
 
 

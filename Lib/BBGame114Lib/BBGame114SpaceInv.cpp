@@ -13,16 +13,10 @@ Sound sound;
 int numHits = 0;
 
 
+//---------- SPACESHIP CLASS ----------
 
-struct Level levels[] = 
-{
-  {  200, 1000, 60, 1, NewAlienLevel1 },
-  { 1100, 1300, 20, 2, NewAlienLevel2 },
-  { 1400, 1900, 40, 4, NewAlienLevel1 },
-  { 2000, 2300, 20, 8, NewAlienLevel2 },
-  { 2700, 2880, 20, 8, NewAlienLevelEmpty }
-};
-
+// Purpose: To implement a spaceship that moves up and down on the
+// left side of the display area.
 
 
 Spaceship::Spaceship()
@@ -103,6 +97,13 @@ void Spaceship::SetPos(byte externalPos)
 }
 
 
+//---------- LASER CLASS ----------
+
+// Purpose: To implement a firing laser that starts at the position
+// of the spaceship and rapidly moves across the display area. A function
+// for collision detection the the Aliens class is also implemented.
+
+
 Laser::Laser()
 {
     fired = false;
@@ -152,7 +153,7 @@ void Laser::Fire(int shipPos)
 
 void Laser::CheckHit(Aliens &aliens)
 {
-  if (fired)
+  if (fired && (distance >= 2))
   {
     for(byte i=0; i<aliens.num; i++)
       if((aliens.pos[i]==distance) && (aliens.state[i]!=0))
@@ -203,25 +204,26 @@ int Laser::GetNumHits()
 }
 
 
+//---------- ALIENS CLASS ----------
+
+// Purpose: To implement an object that creates game levels with waves
+// of aliens moving across the display.
+
+
+// ----- Game levels with different waves of aliens -----
+
+GameLevel defaultGameLevels[] = 
+{
+  { 150, 700, 20, 40, ALIENWAVE_RANDOM, 0, 3, 2 },
+  { 200, 200, 20, 20, ALIENWAVE_MARCH,  1, 2, 1 },
+  { 200, 500, 20, 40, ALIENWAVE_RANDOM, 0, 3, 2 },
+  { 200, 200, 15, 15, ALIENWAVE_MARCH,  1, 2, 1 },
+  { 200, 300, 15, 30, ALIENWAVE_RANDOM, 0, 3, 2 },
+  {  50, 0,   0 ,  0, ALIENWAVE_END,    0, 0, 0 }
+};
+
 int counter2 = 0;
 
-
-byte NewAlienLevel1(int counter)
-{
-    byte y = random(4);
-    return Display::MakeBit(y);
-}
-
-byte NewAlienLevel2(int counter)
-{
-    byte y = (counter2++ % 2) + 1;
-    return Display::MakeBit(y);
-}
-
-byte NewAlienLevelEmpty(int counter)
-{
-    return 0;
-}
 
 Aliens::Aliens()
 {
@@ -229,33 +231,13 @@ Aliens::Aliens()
   next = 0;
   level = 0;
 
+  numLevels = 0;
+  SetGameLevels(defaultGameLevels);
+
   //Get random numbers seed value from EEPROM location 10
   byte rndSeed;
   EEPROM.get(10, rndSeed);
   randomSeed(rndSeed);
-}
-
-void Aliens::AddAlien(int counter)
-{
-    Level *L = &(levels[level]);
-    if (counter > L->end) 
-    {
-      counter2 = 0;
-      level++;
-    }
-
-    L = &(levels[level]);
-    if ((counter < L->start) || (counter > L->end)) return;
-    
-    byte i = next;
-    if (num < 12) num++; 
-
-    aliens[i] = L->NewAlienFunc(counter);
-    pos[i] = 11;
-    state[i] = 1;
-
-    next++;
-    next %= 12;
 }
 
 
@@ -303,31 +285,134 @@ void Aliens::Draw(Display &display)
 
 void Aliens::Update(int counter)
 {
-  for(byte i=0; i<num; i++)
+  if ((counter > levels[level].end) && (counter >= levels[level+1].start))
   {
-    if(state[i]==1)
+    counter2 = 0;
+    level++;
+  }
+
+  if ((counter % levels[level].update_interval) == 0)
+  {
+    for(byte i=0; i<num; i++)
     {
-        if(pos[i]>=0) 
-            pos[i]--;
-        else
-        {
-            pos[i] = 11;
-            state[i] = 0;
-        }
+      if(state[i]==1)
+      {
+          if(pos[i]>=0) 
+              pos[i]--;
+          else
+          {
+              pos[i] = 11;
+              state[i] = 0;
+          }
+      }
     }
   }
 }
 
 
+byte NewAlienRandom(int counter, byte min, byte max)
+{
+    byte y = random(max-min+1) + min  ;
+    return Display::MakeBit(y);
+}
+
+
+byte NewAlienMarch(int counter, byte min, byte max)
+{
+    byte y = 3 - ((counter2++ % (max-min+1)) + min);
+    return Display::MakeBit(y);
+}
+
+
+void Aliens::AddAlien(int counter)
+{
+    GameLevel *L = &(levels[level]);
+
+    if (counter > L->end) return;
+
+    L = &(levels[level]);
+    if ((counter < L->start) || (counter > L->end)) return;
+    
+    byte i = next;
+    if (num < 12) num++; 
+
+    aliens[i] = 0;
+    state[i] = 0;
+    if (L->type == ALIENWAVE_RANDOM) 
+    {
+      aliens[i] = NewAlienRandom(counter,L->min,L->max);
+      pos[i] = 11;
+      state[i] = 1;
+    }
+    if (L->type == ALIENWAVE_MARCH) 
+    {
+      aliens[i] = NewAlienMarch(counter,L->min,L->max);
+      pos[i] = 11;
+      state[i] = 1;
+    }
+
+    next++;
+    next %= 12;
+}
+
+
 int Aliens::NextAlienInterval()
 {
-  return levels[level].update_interval;
+  return levels[level].add_interval;
+}
+
+
+void Aliens::SetGameLevels(GameLevel *newLevels)
+{
+  levels = newLevels;
+  int current_time = 0;
+
+  int i = 0;
+  do
+  {
+    levels[i].start = current_time + levels[i].start_delay;
+    levels[i].end = levels[i].start + levels[i].duration;
+    current_time = levels[i].end;
+    if (levels[i].add_interval < levels[i].update_interval) levels[i].add_interval = levels[i].update_interval;
+    i++;
+  }
+  while(levels[i-1].type != ALIENWAVE_END);
+  numLevels = i;
+
+  AdjustGameLevelGaps(levels);
+}
+
+
+void Aliens::AdjustGameLevelGaps(GameLevel *newLevels)
+{
+  for(byte i = 0; i < (numLevels-1); i++)
+  {
+    //If update interval is different...
+    if(levels[i].update_interval != levels[i+1].update_interval)
+    {
+      //Calculate adjustment needed in gap
+      int gap = levels[i+1].start - levels[i].end;
+      int neededGap = levels[i].update_interval * 12;
+
+      //For any insufficient gap or for last wave...
+      if((gap < neededGap) || (i == (numLevels-2)))
+      {
+        //Adjust all subsequent gaps
+        int gapAdjustment = neededGap - gap;
+        for(byte j = i+1; j < numLevels; j++)
+        {
+          levels[j].start += gapAdjustment;
+          levels[j].end += gapAdjustment;
+        }
+      }
+    }
+  }
 }
 
 
 bool Aliens::Finished()
 {
-  if (level >= NUM_LEVELS)
+  if (level >= numLevels)
   {
     //Put score in EEPROM location 10 for next power up
     EEPROM.put(10, (byte)numHits);

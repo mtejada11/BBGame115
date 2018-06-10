@@ -1,4 +1,4 @@
-
+ 
 //========== SEED Electronics/Coding Workshop Exercise 10d ==========
 
 //Purpose: Full game with score display
@@ -20,7 +20,7 @@ Aliens aliens;
 
 void setup()
 {
-  display.Setup(11, 4);
+  display.Setup(11, 4); 
   buttons.Setup();
 }
 
@@ -55,9 +55,7 @@ void loop()
     laser.CheckHit(aliens);
     laserFired = laser.IsStillFired();
     ship.CheckHit(aliens);
-    
-    if ((counter % 20) == 0) 
-      aliens.Update(counter);
+    aliens.Update(counter);
     
     if ((counter % aliens.NextAlienInterval()) == 0) 
       aliens.AddAlien(counter);

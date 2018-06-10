@@ -48,9 +48,7 @@ void loop()
     laser.Update(counter);
     laser.CheckHit(aliens);
     ship.CheckHit(aliens);
-    
-    if ((counter % 20) == 0) 
-      aliens.Update(counter);
+    aliens.Update(counter);
     
     if ((counter % aliens.NextAlienInterval()) == 0) 
       aliens.AddAlien(counter);
