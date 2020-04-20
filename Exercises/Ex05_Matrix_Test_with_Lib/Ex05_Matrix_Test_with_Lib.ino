@@ -5,7 +5,7 @@
 //Date: May 22, 2018
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 
 
@@ -14,7 +14,7 @@ Display display;
 void setup() 
 {
   //Initialize LED matrix display
-  display.Setup(5,4);
+  display.Setup(6,4);
 }
 
 
@@ -22,9 +22,9 @@ void setup()
 
 void loop() 
 {
-  int d = 150; //ms
+   int d = 150; //ms
 
-  //Flash sequence of horizontal lines
+ //Flash sequence of horizontal lines
   for(int y = 0; y < 4; y++)
   {
     display.Clear();

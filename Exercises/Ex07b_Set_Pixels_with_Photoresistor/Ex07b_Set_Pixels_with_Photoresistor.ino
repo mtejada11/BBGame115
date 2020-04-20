@@ -5,7 +5,7 @@
 //Date: May 28, 2018
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 
 
@@ -14,7 +14,7 @@ Display display;
 void setup() 
 {
   //Initialize LED matrix display
-  display.Setup(5,4);
+  display.Setup(5,5);
   pinMode(A0,INPUT);
   
   //Serial communication with computer over USB
@@ -67,4 +67,3 @@ void loop()
   counter++;
   if (counter > 7) counter = 0;
 }
-
