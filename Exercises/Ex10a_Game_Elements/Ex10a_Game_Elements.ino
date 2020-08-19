@@ -5,7 +5,7 @@
 //Date: June 2, 2018  
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 Buttons buttons;
 
@@ -14,7 +14,7 @@ Buttons buttons;
 
 void setup()
 {
-  display.Setup(11, 4);
+  display.Setup(11, 5);
   buttons.Setup();
 }
 

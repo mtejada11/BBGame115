@@ -5,7 +5,7 @@
 //Date: May 24, 2018
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 TextDisplay textDisplay(display);
 
@@ -15,7 +15,7 @@ TextDisplay textDisplay(display);
 void setup() 
 {
   //Initialize LED matrix display
-  display.Setup(11,4);
+  display.Setup(11,5);
 }
 
 

@@ -1,14 +1,14 @@
 
-//========== BBGAME114 HARDWARE LIBARY ==========
+//========== BBMATRIX54 HARDWARE LIBARY ==========
 
-//Date: May 30, 2018
+//Date: June 30, 2019
 
-#include "BBGame114.h"
+#include "BBMatrix54.h"
 
 
 //---------- DISPLAY CLASS ----------
 
-// Purpose: To abstract the BBGame114 LED matrix as a display, 
+// Purpose: To abstract the BBGame115 LED matrix as a display, 
 // with methods/functions to clear the display, draw a dot,
 // draw horizontal or vertical lines and draw text.
 
@@ -199,7 +199,7 @@ SIGNAL(TIMER2_COMPA_vect)
 //---------- BUTTONS CLASS ----------
 
 // Purpose: To simplify the use of the pushbuttons on the 
-// BBGame114 board. The BtnPressed() method/function only 
+// BBGame115 board. The BtnPressed() method/function only 
 // returns true one time after a buttons is pressed, and it 
 // is not reset until the button is released.
 
@@ -237,7 +237,7 @@ bool Buttons::BtnPressed(byte i)
 //---------- SOUND CLASS ----------
 
 // Purpose: To output sound tones through the piezoelectric
-// speaker on the the BBGame114 board.
+// speaker on the the BBGame115 board.
 
 
 void Sound::Setup()
@@ -274,7 +274,7 @@ void Sound::StartSound(byte _tone, byte _duration, bool _noisy)
 //---------- TEXTDISPLAY CLASS ----------
 
 // Purpose: To draw alphanumeric characters and punctuation on the
-// BBGame114 display.
+// BBGame115 display.
 
 
 TextDisplay::TextDisplay(Display& _display):

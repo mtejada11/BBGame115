@@ -1,15 +1,15 @@
 
-//========== BBGAME114 SPACE INVADERS GAME ==========
+//========== BBGAME115 SPACE INVADERS GAME ==========
 
 //Date: June 2, 2018  
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 Buttons buttons;
 TextDisplay textDisplay(display);
 
-#include "BBGame114SpaceInv.h"
+#include "BBGame115SpaceInv.h"
 Spaceship ship;
 Laser laser;
 Aliens aliens;
@@ -19,7 +19,7 @@ Aliens aliens;
 
 void setup() 
 {
-  display.Setup(11, 4);
+  display.Setup(11, 5);
   buttons.Setup();
 }
 
@@ -68,4 +68,3 @@ void loop()
   counter++;
   delay(d);
 }
-
