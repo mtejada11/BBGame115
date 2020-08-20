@@ -5,10 +5,10 @@ BBGame115 is an electronic game based on the "breadboard game" BBGame114. Becaus
 The BBGame115 PCB already has all the electrical connections as traces, so there is no need for wires. However, all 55 LEDs must be soldered on to the PCB. The Arduino Nano microcontroller, 3 pushbuttons, 8 resistors and the piezoelectric speaker also need to be soldered on to the PCB.
 
 <img src="https://github.com/mtejada11/BBGame115/raw/master/PCB/bbgame115_pcb_assembled.png" width="800" alt="BBGame115 assembled on PCB">
-*Diagram of BBGame115 assembled on PCB*
+*Diagram of BBGame115 assembled on PCB*<br>
 <br>
-<img src="https://github.com/mtejada11/BBGame115/raw/master/PCB/bbgame115_pcb_schematic.png" width="800" alt="BBGame115 circuit schematic">
-*Circuit schematic diagram*
+<img src="https://github.com/mtejada11/BBGame115/raw/master/PCB/bbgame115_pcb_schematic.png" width="800" alt="BBGame115 circuit schematic"><br>
+*Circuit schematic diagram*<br>
 
 # How to Order a PCB
 
