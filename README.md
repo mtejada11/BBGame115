@@ -1,3 +1,15 @@
-# BBGame114
+# BBGame115
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTwCgMxT6tfyuFISR-EN05Gh94V7F2ImzAUhSOJujyntEdJIZhNrEBY4ffKpjtDEzKGENT8YX1-65nV/embed?start=true&loop=true&delayms=1000" frameborder="0" width="1056" height="623" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+BBGame115 is an electronic game based on the "breadboard game" BBGame114. Because BBGame114 is build on a breadboard, it's limited to a matrix of 11x4 LEDs. BBGame115 is built on a printed circuit board (PCB), and the size of its matrix is 11x5 LEDs. The extra row of LEDs mainly improves the display of dot-matrix text.
+
+The BBGame115 PCB already has all the electrical connections as traces, so there is no need for wires. However, all 55 LEDs must be soldered on to the PCB. The Arduino Nano microcontroller, 3 pushbuttons, 8 resistors and the piezoelectric speaker also need to be soldered on to the PCB.
+
+<img src="https://github.com/mtejada11/BBGame115/raw/master/PCB/bbgame115_pcb_assembled.png" width="800" alt="BBGame115 assembled on PCB">
+*Diagram of BBGame115 assembled on PCB*
+
+<img src="https://github.com/mtejada11/BBGame115/raw/master/PCB/bbgame115_pcb_schematic.png" width="800" alt="BBGame115 circuit schematic">
+*Circuit schematic diagram*
+
+# BBGame115 Arduino Library
+
+The [BBGame115Lib.zip](https://github.com/mtejada11/BBGame115/raw/master/Lib/BBGame114Lib.zip?raw=true) library for Arduino included in this repository is a library that allows the BBGame115 device to be programmed with higher level methods/functions than the Arduino `digitalWrite` and `digitalRead` functions. Refer to the [BBGame114Lib Library Reference](https://github.com/mtejada11/BBGame114/wiki/BBGame114Lib-Library-Reference) page for more information on this library. The interfaces for the BBGame114 and BBGame115 are identical, and there are just a few differences in the libraries' internal code. 
