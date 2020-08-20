@@ -1,5 +1,5 @@
 
-//========== BBGAME114 HARDWARE LIBARY ==========
+//========== BBGAME115 HARDWARE LIBARY ==========
 
 //Date: May 30, 2018
 
@@ -12,7 +12,7 @@
 
 //---------- DISPLAY CLASS ----------
 
-// Purpose: To abstract the BBGame114 LED matrix as a display, 
+// Purpose: To abstract the BBGame115 LED matrix as a display, 
 // with methods/functions to Clear the display, draw a dot,
 // draw horizontal or vertical lines and draw text.
 
@@ -41,7 +41,7 @@ private:
 //---------- BUTTONS CLASS ----------
 
 // Purpose: To simplify the use of the pushbuttons on the 
-// BBGame114 board. The BtnPressed() method/function only 
+// BBGame115 board. The BtnPressed() method/function only 
 // returns true one time after a buttons is pressed, and it 
 // is not reset until the button is released.
 
@@ -65,7 +65,7 @@ private:
 //---------- SOUND CLASS ----------
 
 // Purpose: To output sound tones through the piezoelectric
-// speaker on the the BBGame114 board.
+// speaker on the the BBGame115 board.
 
 
 #define SNDPIN 10
@@ -86,7 +86,7 @@ private:
 //---------- TEXTDISPLAY CLASS ----------
 
 // Purpose: To draw alphanumeric characters and punctuation on the
-// BBGame114 display.
+// BBGame115 display.
 
 
 class TextDisplay

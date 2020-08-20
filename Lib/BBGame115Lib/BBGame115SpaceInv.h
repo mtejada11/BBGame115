@@ -1,5 +1,5 @@
 
-//========== BBGAME114 SPACE INVADERS GAME LIBARY ==========
+//========== BBGAME115 SPACE INVADERS GAME LIBARY ==========
 
 //Date: May 30, 2018
 
@@ -8,7 +8,7 @@
 #define LIBGAME_H
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 
 
 typedef struct

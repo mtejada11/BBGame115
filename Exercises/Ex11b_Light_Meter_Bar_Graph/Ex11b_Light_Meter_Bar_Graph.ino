@@ -5,7 +5,7 @@
 //Date: May 28, 2018
 
 
-#include "BBGame114.h"
+#include "BBGame115.h"
 Display display;
 
 
@@ -16,7 +16,7 @@ Display display;
 void setup() 
 {
   //Initialize LED matrix display
-  display.Setup(11,4);
+  display.Setup(11,5);
 
   //Input for photoresistor
   pinMode(PHOTORESISTOR,INPUT);
