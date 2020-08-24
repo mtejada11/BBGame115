@@ -1,6 +1,6 @@
 # BBGame115
 
-BBGame115 is an electronic game based on the "breadboard game" BBGame114. Because [BBGame114](https://github.com/mtejada11/BBGame114/wiki) is built on a breadboard, it's limited to a matrix of 11x4 LEDs. BBGame115 is built on a printed circuit board (PCB), and the size of its matrix is 11x5 LEDs. The extra row of LEDs mainly improves the display of dot-matrix text.
+BBGame115 is an electronic game based on the "breadboard game" [BBGame114](https://github.com/mtejada11/BBGame114). Because [BBGame114](https://github.com/mtejada11/BBGame114) is built on a breadboard, it's limited to a matrix of 11x4 LEDs. BBGame115 is built on a printed circuit board (PCB), and the size of its matrix is 11x5 LEDs. The extra row of LEDs mainly improves the display of dot-matrix text.
 
 The BBGame115 PCB already has all the electrical connections as traces, so there is no need for wires. However, all 55 LEDs must be soldered on to the PCB. The Arduino Nano microcontroller, 3 pushbuttons, 8 resistors and the piezoelectric speaker also need to be soldered on to the PCB.
 
