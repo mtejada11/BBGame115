@@ -66,7 +66,7 @@ void Spaceship::Draw(Display &display)
 
 void Spaceship::Move(int8_t dir)
 {
-  if((dir==+1) && (pos < 3)) pos++;
+  if((dir==+1) && (pos < 4)) pos++;
   if((dir==-1) && (pos > 0)) pos--;
 }
 
@@ -214,11 +214,11 @@ int Laser::GetNumHits()
 
 GameLevel defaultGameLevels[] = 
 {
-  { 150, 700, 20, 40, ALIENWAVE_RANDOM, 0, 3, 2 },
+  { 150, 700, 20, 40, ALIENWAVE_RANDOM, 0, 4, 2 },
   { 200, 200, 20, 20, ALIENWAVE_MARCH,  1, 2, 1 },
-  { 200, 500, 20, 40, ALIENWAVE_RANDOM, 0, 3, 2 },
-  { 200, 200, 15, 15, ALIENWAVE_MARCH,  1, 2, 1 },
-  { 200, 300, 15, 30, ALIENWAVE_RANDOM, 0, 3, 2 },
+  { 200, 500, 20, 40, ALIENWAVE_RANDOM, 0, 4, 2 },
+  { 200, 200, 15, 15, ALIENWAVE_MARCH,  2, 3, 1 },
+  { 200, 300, 15, 30, ALIENWAVE_RANDOM, 0, 4, 2 },
   {  50, 0,   0 ,  0, ALIENWAVE_END,    0, 0, 0 }
 };
 
@@ -314,7 +314,7 @@ void Aliens::Update(int counter)
 
 byte NewAlienRandom(int counter, byte min, byte max)
 {
-    byte y = random(max-min+1) + min  ;
+    byte y = random(max-min+1) + min;
     return Display::MakeBit(y);
 }
 

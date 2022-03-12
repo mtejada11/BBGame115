@@ -55,6 +55,7 @@ class Buttons
 {
 public:
     void Setup();
+    bool BtnDown(byte i);
     bool BtnPressed(byte i);
 
 private:
