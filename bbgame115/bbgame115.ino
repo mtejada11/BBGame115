@@ -14,6 +14,8 @@ Spaceship ship;
 Laser laser;
 Aliens aliens;
 
+#include "BBGame115Other.h"
+
 
 //---------- Setup routine to run once ----------
 
@@ -21,6 +23,9 @@ void setup()
 {
   display.Setup(11, 5);
   buttons.Setup();
+
+  if (buttons.BtnDown(BTN2)) CountUpandDown(100);
+  if (buttons.BtnDown(BTN3)) ScrollName("Tengis");
 }
 
 
@@ -54,8 +59,8 @@ void loop()
       aliens.AddAlien(counter);
 
     if(buttons.BtnPressed(BTN1)) laser.Fire(ship.pos);     
-    if(buttons.BtnPressed(BTN2)) ship.Move(+1);
-    if(buttons.BtnPressed(BTN3)) ship.Move(-1);
+    if(buttons.BtnPressed(BTN2)) ship.Move(-1);
+    if(buttons.BtnPressed(BTN3)) ship.Move(+1);
   }
   else if (scoreDisplayed == false)
   {
